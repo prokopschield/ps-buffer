@@ -10,7 +10,7 @@ pub struct Buffer {
 
 impl Buffer {
     pub fn alloc(length: usize) -> Self {
-        let vec_len = (length - 1) / std::mem::size_of::<AlignmentType>() + 1;
+        let vec_len = helpers::to_vec_len(length);
         let vec: Vec<AlignmentType> = vec![FILLER; vec_len];
 
         Self { vec, length }
@@ -58,5 +58,11 @@ impl Deref for Buffer {
 impl DerefMut for Buffer {
     fn deref_mut(&mut self) -> &mut Self::Target {
         unsafe { std::slice::from_raw_parts_mut(self.vec.as_ptr() as *mut u8, self.len()) }
+    }
+}
+
+pub mod helpers {
+    pub fn to_vec_len(length: usize) -> usize {
+        (length - 1) / std::mem::size_of::<crate::AlignmentType>() + 1
     }
 }
