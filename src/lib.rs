@@ -33,6 +33,26 @@ impl Buffer {
     pub fn len(&self) -> usize {
         self.length
     }
+
+    pub fn resize(&mut self, length: usize) {
+        if length < self.length {
+            self.length = length;
+            return;
+        }
+
+        let vec_len = helpers::to_vec_len(length);
+
+        if vec_len <= self.vec.len() {
+            let old_len = self.length;
+            self.length = length;
+            self[old_len..length].fill(0);
+        } else {
+            let mut new_buf = Self::alloc(length);
+            new_buf[0..self.len()].copy_from_slice(self);
+            self.vec = new_buf.vec;
+            self.length = new_buf.length;
+        }
+    }
 }
 
 impl AsMut<[u8]> for Buffer {
