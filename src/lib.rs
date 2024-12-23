@@ -3,6 +3,7 @@ use std::ops::{Deref, DerefMut};
 pub type AlignmentType = u128;
 pub const FILLER: AlignmentType = 0;
 
+#[derive(Clone, Default, Hash, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Buffer {
     vec: Vec<AlignmentType>,
     length: usize,
