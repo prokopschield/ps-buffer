@@ -82,6 +82,15 @@ impl DerefMut for Buffer {
     }
 }
 
+impl std::fmt::Debug for Buffer {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Buffer")
+            .field("length", &self.len())
+            .field("bytes", &&self[..])
+            .finish()
+    }
+}
+
 pub mod helpers {
     pub fn to_vec_len(length: usize) -> usize {
         (length - 1) / std::mem::size_of::<crate::AlignmentType>() + 1
