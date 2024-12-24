@@ -27,11 +27,11 @@ impl Buffer {
         buffer
     }
 
-    pub fn is_empty(&self) -> bool {
+    pub const fn is_empty(&self) -> bool {
         self.length == 0
     }
 
-    pub fn len(&self) -> usize {
+    pub const fn len(&self) -> usize {
         self.length
     }
 
@@ -92,7 +92,7 @@ impl std::fmt::Debug for Buffer {
 }
 
 pub mod helpers {
-    pub fn to_vec_len(length: usize) -> usize {
+    pub const fn to_vec_len(length: usize) -> usize {
         (length - 1) / std::mem::size_of::<crate::AlignmentType>() + 1
     }
 }
