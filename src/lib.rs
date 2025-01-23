@@ -93,6 +93,6 @@ impl std::fmt::Debug for Buffer {
 
 pub mod helpers {
     pub const fn to_vec_len(length: usize) -> usize {
-        (length - 1) / std::mem::size_of::<crate::AlignmentType>() + 1
+        length.div_ceil(std::mem::size_of::<crate::AlignmentType>())
     }
 }
