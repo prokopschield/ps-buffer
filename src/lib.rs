@@ -1,6 +1,10 @@
-use std::ops::{Deref, DerefMut};
+use std::{
+    collections::TryReserveError,
+    ops::{Deref, DerefMut},
+};
 
 pub type AlignmentType = u128;
+pub const FACTOR: usize = std::mem::size_of::<AlignmentType>();
 pub const FILLER: AlignmentType = 0;
 
 #[derive(Clone, Default, Hash, PartialEq, Eq, PartialOrd, Ord)]
@@ -53,6 +57,10 @@ impl Buffer {
             self.vec = new_buf.vec;
             self.length = new_buf.length;
         }
+    }
+
+    pub fn try_reserve(&mut self, additional: usize) -> Result<(), TryReserveError> {
+        self.vec.try_reserve(additional.div_ceil(FACTOR))
     }
 }
 
