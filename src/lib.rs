@@ -14,3 +14,6 @@ pub struct Buffer {
     /// Buffer length in bytes.
     length: usize,
 }
+
+unsafe impl Send for Buffer {}
+unsafe impl Sync for Buffer {}
