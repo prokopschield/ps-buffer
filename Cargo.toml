@@ -1,7 +1,7 @@
 [package]
 name = "ps-buffer"
 description = "aligned heap buffer"
-version = "0.1.0-5"
+version = "0.1.0-6"
 edition = "2021"
 license = "GPL-3.0-or-later"
 
@@ -12,5 +12,5 @@ opt-level = 3
 opt-level = 3
 
 [dependencies]
-ps-alloc = "0.1.0-1"
+ps-alloc = "0.1.0-3"
 thiserror = "2.0.11"
