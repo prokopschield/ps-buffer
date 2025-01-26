@@ -1,106 +1,16 @@
-use std::{
-    collections::TryReserveError,
-    ops::{Deref, DerefMut},
-};
+pub use constants::*;
+pub use error::BufferError;
 
-pub type AlignmentType = u128;
-pub const FACTOR: usize = std::mem::size_of::<AlignmentType>();
-pub const FILLER: AlignmentType = 0;
+mod constants;
+mod error;
+mod implementations;
+mod methods;
 
-#[derive(Clone, Default, Hash, PartialEq, Eq, PartialOrd, Ord)]
 pub struct Buffer {
-    vec: Vec<AlignmentType>,
+    /// This is a raw pointer to this Buffer's data.
+    ptr: *mut u8,
+    /// Buffer's allocated capacity in bytes.
+    capacity: usize,
+    /// Buffer length in bytes.
     length: usize,
-}
-
-impl Buffer {
-    pub fn alloc(length: usize) -> Self {
-        let vec_len = helpers::to_vec_len(length);
-        let vec: Vec<AlignmentType> = vec![FILLER; vec_len];
-
-        Self { vec, length }
-    }
-
-    pub fn from<T: AsRef<[u8]>>(value: T) -> Self {
-        let source = value.as_ref();
-
-        let mut buffer = Self::alloc(source.len());
-
-        buffer.copy_from_slice(source);
-
-        buffer
-    }
-
-    pub const fn is_empty(&self) -> bool {
-        self.length == 0
-    }
-
-    pub const fn len(&self) -> usize {
-        self.length
-    }
-
-    pub fn resize(&mut self, length: usize) {
-        if length < self.length {
-            self.length = length;
-            return;
-        }
-
-        let vec_len = helpers::to_vec_len(length);
-
-        if vec_len <= self.vec.len() {
-            let old_len = self.length;
-            self.length = length;
-            self[old_len..length].fill(0);
-        } else {
-            let mut new_buf = Self::alloc(length);
-            new_buf[0..self.len()].copy_from_slice(self);
-            self.vec = new_buf.vec;
-            self.length = new_buf.length;
-        }
-    }
-
-    pub fn try_reserve(&mut self, additional: usize) -> Result<(), TryReserveError> {
-        self.vec.try_reserve(additional.div_ceil(FACTOR))
-    }
-}
-
-impl AsMut<[u8]> for Buffer {
-    fn as_mut(&mut self) -> &mut [u8] {
-        self
-    }
-}
-
-impl AsRef<[u8]> for Buffer {
-    fn as_ref(&self) -> &[u8] {
-        self
-    }
-}
-
-impl Deref for Buffer {
-    type Target = [u8];
-
-    fn deref(&self) -> &Self::Target {
-        unsafe { std::slice::from_raw_parts(self.vec.as_ptr() as *const u8, self.len()) }
-    }
-}
-
-impl DerefMut for Buffer {
-    fn deref_mut(&mut self) -> &mut Self::Target {
-        unsafe { std::slice::from_raw_parts_mut(self.vec.as_ptr() as *mut u8, self.len()) }
-    }
-}
-
-impl std::fmt::Debug for Buffer {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct("Buffer")
-            .field("length", &self.len())
-            .field("bytes", &&self[..])
-            .finish()
-    }
-}
-
-pub mod helpers {
-    pub const fn to_vec_len(length: usize) -> usize {
-        length.div_ceil(std::mem::size_of::<crate::AlignmentType>())
-    }
 }
