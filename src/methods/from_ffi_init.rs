@@ -17,7 +17,7 @@ impl Buffer {
         F: FnOnce(&mut [u8]) -> usize,
     {
         // Allocate the buffer with the specified number of bytes
-        let mut buffer = Buffer::alloc_uninit(bytes)?;
+        let mut buffer = Self::alloc_uninit(bytes)?;
 
         // Invoke the initialization function
         let initialized_bytes = init_fn(buffer.as_mut());
@@ -25,9 +25,7 @@ impl Buffer {
         // Ensure that the number of bytes initialized does not exceed the allocated size
         debug_assert!(
             initialized_bytes <= bytes,
-            "Initialized bytes ({}) cannot exceed allocated bytes ({}).",
-            initialized_bytes,
-            bytes
+            "Initialized bytes ({initialized_bytes}) cannot exceed allocated bytes ({bytes})."
         );
 
         // Truncate uninitialized bytes

@@ -35,7 +35,7 @@ mod tests {
         buffer.set_len(128)?;
 
         for i in buffer.as_mut() {
-            *i = std::ptr::addr_of!(i) as u8
+            *i = std::ptr::addr_of!(i) as u8;
         }
 
         let copy = Buffer::from(&buffer)?;

@@ -38,11 +38,11 @@ impl Buffer {
     ///
     /// *This documenting comment is based on [`Vec::from_raw_parts`].*
     #[inline]
-    pub unsafe fn from_raw_parts(ptr: *mut u8, length: usize, capacity: usize) -> Self {
-        Buffer {
+    pub const unsafe fn from_raw_parts(ptr: *mut u8, length: usize, capacity: usize) -> Self {
+        Self {
+            ptr,
             capacity,
             length,
-            ptr,
         }
     }
 }

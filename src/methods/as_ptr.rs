@@ -2,6 +2,7 @@ use crate::Buffer;
 
 impl Buffer {
     #[inline]
+    #[must_use]
     pub const fn as_ptr(&self) -> *const u8 {
         self.ptr
     }
@@ -23,7 +24,7 @@ mod tests {
             ptr: vec.as_mut_ptr(),
         };
 
-        assert_eq!(buffer.as_ptr(), vec.as_ptr() as *const u8);
+        assert_eq!(buffer.as_ptr(), vec.as_ptr().cast::<u8>());
 
         std::mem::forget(buffer);
     }

@@ -16,6 +16,6 @@ mod tests {
     fn is_null() {
         let buffer = Buffer::default();
 
-        assert_eq!(buffer.ptr, std::ptr::null_mut())
+        assert_eq!(buffer.ptr, std::ptr::null_mut());
     }
 }

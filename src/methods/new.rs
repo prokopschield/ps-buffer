@@ -3,7 +3,8 @@ use crate::Buffer;
 impl Buffer {
     #[inline]
     /// Creates an empty Buffer.
-    pub fn new() -> Self {
+    #[must_use]
+    pub const fn new() -> Self {
         Self {
             capacity: 0,
             length: 0,

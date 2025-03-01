@@ -5,7 +5,7 @@ impl Buffer {
     where
         T: AsRef<[u8]>,
     {
-        let mut buffer = Buffer::default();
+        let mut buffer = Self::default();
 
         buffer.extend_from_slice(value.as_ref())?;
 

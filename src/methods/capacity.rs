@@ -2,7 +2,8 @@ use crate::Buffer;
 
 impl Buffer {
     #[inline]
-    pub fn capacity(&self) -> usize {
+    #[must_use]
+    pub const fn capacity(&self) -> usize {
         self.capacity
     }
 }
