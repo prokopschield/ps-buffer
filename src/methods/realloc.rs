@@ -3,6 +3,9 @@ use ps_alloc::{alloc, free};
 use crate::{Buffer, BufferError};
 
 impl Buffer {
+    /// # Errors
+    /// - `AllocationError` is returned if allocation fails.
+    /// - `DeallocationError` is returned if deallocation fails.
     pub fn realloc(&mut self, size: usize) -> Result<&mut Self, BufferError> {
         let old_ptr = self.ptr;
         let new_ptr = alloc(size)?;
