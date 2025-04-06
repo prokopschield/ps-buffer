@@ -1,6 +1,9 @@
 use crate::{Buffer, BufferError};
 
 impl Buffer {
+    /// # Errors
+    /// - `AllocationError` is returned if allocation fails.
+    /// - `DeallocationError` is returned if deallocation fails.
     pub fn extend_from_slice(&mut self, other: &[u8]) -> Result<&mut Self, BufferError> {
         self.reserve(other.len())?;
 

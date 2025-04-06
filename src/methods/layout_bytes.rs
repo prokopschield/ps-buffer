@@ -4,6 +4,8 @@ use crate::{constants::FACTOR, Buffer};
 
 impl Buffer {
     #[inline]
+    /// # Errors
+    /// [`LayoutError`] is propagated from [`Layout::array`].
     pub fn layout_bytes(bytes: usize) -> Result<Layout, LayoutError> {
         Self::layout_chunks(bytes.div_ceil(FACTOR))
     }

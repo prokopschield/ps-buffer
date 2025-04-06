@@ -4,6 +4,8 @@ use crate::{AlignmentType, Buffer};
 
 impl Buffer {
     #[inline]
+    /// # Errors
+    /// [`LayoutError`] is propagated from [`Layout::array`].
     pub fn layout_chunks(chunks: usize) -> Result<Layout, LayoutError> {
         Layout::array::<AlignmentType>(chunks)
     }

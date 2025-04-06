@@ -6,6 +6,8 @@ use crate::Buffer;
 
 impl Buffer {
     /// Deallocates this `Buffer`.
+    /// # Errors
+    /// `DeallocationError` is returned if calling [`ps_alloc::free`] fails.
     pub fn free(&mut self) -> Result<&mut Self, DeallocationError> {
         let ptr = self.ptr;
 

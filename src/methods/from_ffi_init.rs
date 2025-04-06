@@ -12,6 +12,14 @@ impl Buffer {
     ///
     /// `Ok(Buffer)` with at least `bytes` allocated, where `init_fn` has been applied to initialize some portion of it,
     /// or `Err(BufferError)` if allocation fails.
+    ///
+    /// # Errors
+    ///
+    /// - `AllocationError` is returned if allocation fails.
+    ///
+    /// # Panics
+    ///
+    /// - Panics if the number of initialized bytes > number of allocated bytes.
     pub fn from_ffi_init<F>(bytes: usize, init_fn: F) -> Result<Self, BufferError>
     where
         F: FnOnce(&mut [u8]) -> usize,

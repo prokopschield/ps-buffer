@@ -4,6 +4,8 @@ use crate::Buffer;
 
 impl Buffer {
     #[inline]
+    /// # Errors
+    /// [`LayoutError`] is propagated from [`Layout::array`].
     pub fn layout(&self) -> Result<Layout, LayoutError> {
         Self::layout_chunks(self.capacity_u128())
     }
