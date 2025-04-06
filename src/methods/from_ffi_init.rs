@@ -37,6 +37,7 @@ impl Buffer {
 }
 
 #[cfg(test)]
+#[allow(clippy::unwrap_used)]
 mod tests {
     use super::*;
 
@@ -44,7 +45,7 @@ mod tests {
     fn test_from_ffi_init_full_buffer() {
         let buffer = Buffer::from_ffi_init(10, |slice| {
             for (i, byte) in slice.iter_mut().enumerate() {
-                *byte = i as u8;
+                *byte = u8::try_from(i).unwrap();
             }
             slice.len()
         })
@@ -60,7 +61,7 @@ mod tests {
         let buffer = Buffer::from_ffi_init(10, |slice| {
             for (i, byte) in slice.iter_mut().enumerate() {
                 if i < 5 {
-                    *byte = i as u8;
+                    *byte = u8::try_from(i).unwrap();
                 }
             }
             5 // Only 5 bytes are initialized
@@ -97,7 +98,7 @@ mod tests {
         // This test should panic due to the debug_assert
         let _ = Buffer::from_ffi_init(10, |slice| {
             for (i, byte) in slice.iter_mut().enumerate() {
-                *byte = i as u8;
+                *byte = u8::try_from(i).unwrap();
             }
             11 // Trying to initialize more bytes than allocated
         })

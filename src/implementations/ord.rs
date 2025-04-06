@@ -3,8 +3,7 @@ use crate::Buffer;
 impl Ord for Buffer {
     fn clamp(self, min: Self, max: Self) -> Self
     where
-        Self: Sized,
-        Self: PartialOrd,
+        Self: Sized + PartialOrd,
     {
         if max[..] > self[..] {
             max
