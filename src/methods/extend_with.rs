@@ -5,6 +5,10 @@ impl Buffer {
     /// - `AllocationError` is returned if allocation fails.
     /// - `DeallocationError` is returned if deallocation fails.
     pub fn extend_with(&mut self, n: usize, value: u8) -> Result<&mut Self, BufferError> {
+        if n == 0 {
+            return Ok(self);
+        }
+
         self.reserve(n)?;
 
         unsafe {

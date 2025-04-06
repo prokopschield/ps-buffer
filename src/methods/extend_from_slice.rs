@@ -5,6 +5,10 @@ impl Buffer {
     /// - `AllocationError` is returned if allocation fails.
     /// - `DeallocationError` is returned if deallocation fails.
     pub fn extend_from_slice(&mut self, other: &[u8]) -> Result<&mut Self, BufferError> {
+        if other.len() == 0 {
+            return Ok(self);
+        }
+
         self.reserve(other.len())?;
 
         unsafe {
