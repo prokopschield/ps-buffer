@@ -13,7 +13,6 @@ impl Buffer {
     /// * The first `length` values must be properly initialized.
     /// * `capacity` needs to be the capacity that the pointer was allocated with.
     /// * The allocated size in bytes must be no larger than `isize::MAX`.
-    ///   See the safety documentation of [`pointer::offset`].
     ///
     /// These requirements are always upheld by any `ptr` that has been allocated
     /// by `Buffer`. Other allocation sources are allowed if the invariants are
@@ -28,7 +27,7 @@ impl Buffer {
     /// alignment. `Buffer` always deallocates with alignment 16.
     ///
     /// If you need to create a `Buffer` from memory which does not uphold there invariants,
-    /// use [`slice::from_raw_parts`] and [`Buffer::from`].
+    /// use [`std::slice::from_raw_parts`] and [`Buffer::from_slice`].
     ///
     /// The ownership of `ptr` is effectively transferred to the
     /// `Buffer` which may then deallocate, reallocate or change the
