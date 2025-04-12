@@ -15,8 +15,9 @@ impl Buffer {
         self.length = 0;
         self.ptr = null_mut();
 
-        free(ptr)?;
-
-        Ok(self)
+        match free(ptr) {
+            Ok(()) | Err(DeallocationError::NullPtr) => Ok(self),
+            Err(err) => Err(err)?,
+        }
     }
 }
