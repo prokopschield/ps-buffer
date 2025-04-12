@@ -1,6 +1,12 @@
 use crate::{Buffer, BufferError};
 
 impl Buffer {
+    /// Returns a new [`Buffer`] which is the result of concatenating all the slices in the list together.
+    ///
+    /// If the list has no items, then a new zero-length [`Buffer`] is returned.
+    ///
+    /// # Errors
+    /// - [`BufferError::AllocationError`] is returned if allocation fails.
     pub fn concat(list: &[&[u8]]) -> Result<Self, BufferError> {
         let mut length = 0;
 
