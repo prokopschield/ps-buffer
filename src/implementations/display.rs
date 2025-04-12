@@ -24,7 +24,7 @@ mod tests {
 
     #[test]
     pub fn deadbeef() -> Result<(), BufferError> {
-        let buffer = Buffer::from(b"\xde\xad\xbe\xef")?;
+        let buffer = Buffer::from_slice(b"\xde\xad\xbe\xef")?;
         let pretty = buffer.to_string();
 
         assert_eq!(pretty, "<Buffer de ad be ef>");

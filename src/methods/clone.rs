@@ -7,6 +7,6 @@ impl Buffer {
     /// - `AllocationError` is returned if allocation fails.
     /// - `DeallocationError` is returned if deallocation fails.
     pub fn clone(&self) -> Result<Self, BufferError> {
-        Self::from(&self[..])
+        Self::from_slice(&self[..])
     }
 }

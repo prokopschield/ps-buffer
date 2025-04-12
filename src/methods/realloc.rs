@@ -41,7 +41,7 @@ mod tests {
             *i = std::ptr::addr_of!(i) as u8;
         }
 
-        let copy = Buffer::from(&buffer)?;
+        let copy = Buffer::from_slice(&buffer)?;
 
         buffer.realloc(512)?;
 
