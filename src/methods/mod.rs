@@ -7,6 +7,7 @@ mod as_slice;
 mod capacity;
 mod capacity_u128;
 mod clone;
+mod concat;
 mod extend_from_slice;
 mod extend_with;
 mod free;
