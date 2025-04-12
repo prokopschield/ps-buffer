@@ -22,5 +22,7 @@ mod reserve;
 mod reserve_total;
 mod resize;
 mod set_len;
+mod slice;
+mod slice_mut;
 mod truncate;
 mod with_capacity;
