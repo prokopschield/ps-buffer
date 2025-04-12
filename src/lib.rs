@@ -2,11 +2,13 @@
 
 pub use constants::*;
 pub use error::BufferError;
+pub use traits::*;
 
 mod constants;
 mod error;
 mod implementations;
 mod methods;
+mod traits;
 
 pub struct Buffer {
     /// This is a raw pointer to this Buffer's data.
