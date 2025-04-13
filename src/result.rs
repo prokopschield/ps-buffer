@@ -1,5 +1,6 @@
 use crate::{Buffer, BufferError};
 
+#[must_use]
 #[derive(Debug, PartialEq, Eq)]
 pub enum BufferResult {
     Ok(Buffer),

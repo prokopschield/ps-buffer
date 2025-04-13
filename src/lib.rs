@@ -12,6 +12,7 @@ mod methods;
 mod result;
 mod traits;
 
+#[must_use]
 pub struct Buffer {
     /// This is a raw pointer to this Buffer's data.
     ptr: *mut u8,
