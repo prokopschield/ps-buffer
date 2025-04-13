@@ -9,7 +9,6 @@ mod deref_mut;
 mod display;
 mod drop;
 mod eq;
-mod from_iterator;
 mod hash;
 mod ord;
 mod partial_eq;
