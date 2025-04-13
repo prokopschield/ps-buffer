@@ -4,7 +4,12 @@ impl Buffer {
     /// # Errors
     /// - `AllocationError` is returned if allocation fails.
     /// - `DeallocationError` is returned if deallocation fails.
-    pub fn extend_from_slice(&mut self, other: &[u8]) -> Result<&mut Self, BufferError> {
+    pub fn extend_from_slice<T>(&mut self, other: T) -> Result<&mut Self, BufferError>
+    where
+        T: AsRef<[u8]>,
+    {
+        let other = other.as_ref();
+
         if other.is_empty() {
             return Ok(self);
         }
