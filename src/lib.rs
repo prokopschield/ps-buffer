@@ -2,7 +2,7 @@
 
 pub use constants::*;
 pub use error::BufferError;
-pub use result::Result;
+pub use result::BufferResult;
 pub use traits::*;
 
 mod constants;

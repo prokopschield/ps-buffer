@@ -1,12 +1,12 @@
 use crate::{Buffer, BufferError};
 
 #[derive(Debug, PartialEq, Eq)]
-pub enum Result {
+pub enum BufferResult {
     Ok(Buffer),
     Err(BufferError),
 }
 
-impl Clone for Result {
+impl Clone for BufferResult {
     fn clone(&self) -> Self {
         match self {
             Self::Ok(buffer) => buffer.clone().into(),
@@ -15,14 +15,14 @@ impl Clone for Result {
     }
 }
 
-impl Default for Result {
+impl Default for BufferResult {
     fn default() -> Self {
         Self::Ok(Buffer::default())
     }
 }
 
-impl From<std::result::Result<Buffer, BufferError>> for Result {
-    fn from(result: std::result::Result<Buffer, BufferError>) -> Self {
+impl From<Result<Buffer, BufferError>> for BufferResult {
+    fn from(result: Result<Buffer, BufferError>) -> Self {
         match result {
             Ok(buffer) => Self::Ok(buffer),
             Err(err) => Self::Err(err),
@@ -30,31 +30,31 @@ impl From<std::result::Result<Buffer, BufferError>> for Result {
     }
 }
 
-impl From<Buffer> for Result {
+impl From<Buffer> for BufferResult {
     fn from(buffer: Buffer) -> Self {
         Self::Ok(buffer)
     }
 }
 
-impl From<BufferError> for Result {
+impl From<BufferError> for BufferResult {
     fn from(err: BufferError) -> Self {
         Self::Err(err)
     }
 }
 
-impl From<Result> for std::result::Result<Buffer, BufferError> {
-    fn from(result: Result) -> Self {
+impl From<BufferResult> for Result<Buffer, BufferError> {
+    fn from(result: BufferResult) -> Self {
         match result {
-            Result::Ok(buffer) => Ok(buffer),
-            Result::Err(err) => Err(err),
+            BufferResult::Ok(buffer) => Ok(buffer),
+            BufferResult::Err(err) => Err(err),
         }
     }
 }
 
-impl Result {
+impl BufferResult {
     #[allow(clippy::missing_errors_doc)]
-    /// Converts this [`crate::BufferOps::Result`] into a [`std::result::Result`].
-    pub fn into_result(self) -> std::result::Result<Buffer, BufferError> {
+    /// Converts this [`BufferResult`] into a [`std::result::Result`].
+    pub fn into_result(self) -> Result<Buffer, BufferError> {
         self.into()
     }
 }
