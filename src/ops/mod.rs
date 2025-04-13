@@ -1,4 +1,4 @@
-use crate::{Buffer, BufferError};
+use crate::{Buffer, BufferError, Result};
 
 pub trait BufferOps {
     type Error;
@@ -7,5 +7,5 @@ pub trait BufferOps {
 
 impl BufferOps for Buffer {
     type Error = BufferError;
-    type Result = Result<Self, Self::Error>;
+    type Result = Result;
 }

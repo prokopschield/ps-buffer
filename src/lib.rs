@@ -3,6 +3,7 @@
 pub use constants::*;
 pub use error::BufferError;
 pub use ops::BufferOps;
+pub use result::Result;
 pub use traits::*;
 
 mod constants;
@@ -10,6 +11,7 @@ mod error;
 mod implementations;
 mod methods;
 mod ops;
+mod result;
 mod traits;
 
 pub struct Buffer {
