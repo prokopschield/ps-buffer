@@ -18,6 +18,7 @@ mod is_empty;
 mod leak;
 mod len;
 mod new;
+mod push;
 mod realloc;
 mod reserve;
 mod reserve_exact;
