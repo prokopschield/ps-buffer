@@ -19,7 +19,7 @@ mod leak;
 mod len;
 mod new;
 mod realloc;
-mod reserve;
+mod reserve_exact;
 mod reserve_total;
 mod resize;
 mod set_len;
