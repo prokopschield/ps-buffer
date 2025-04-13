@@ -12,6 +12,6 @@ opt-level = 3
 opt-level = 3
 
 [dependencies]
-ps-alloc = "0.1.0-4"
+ps-alloc = "0.1.0-6"
 ps-range = "0.1.0-2"
 thiserror = "2.0.12"
