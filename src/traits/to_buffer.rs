@@ -4,11 +4,11 @@ pub trait ToBuffer {
     /// Creates a new [`Buffer`] containing the byte representation of `self`.
     /// # Errors
     /// - Returns [`BufferError`] if the allocation fails.
-    fn to_buffer(&self) -> Result<Buffer, BufferError>;
+    fn to_buffer(self) -> Result<Buffer, BufferError>;
 }
 
 impl<T: AsRef<[u8]>> ToBuffer for T {
-    fn to_buffer(&self) -> Result<Buffer, BufferError> {
+    fn to_buffer(self) -> Result<Buffer, BufferError> {
         Buffer::from_slice(self)
     }
 }
