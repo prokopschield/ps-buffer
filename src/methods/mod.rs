@@ -26,6 +26,7 @@ mod reserve_exact;
 mod reserve_total;
 mod resize;
 mod set_len;
+mod share;
 mod slice;
 mod slice_mut;
 mod truncate;
