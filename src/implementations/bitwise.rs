@@ -74,7 +74,7 @@ impl ShrAssign<u8> for crate::Buffer {
 mod tests {
     #[test]
     fn test_bitand_assign_slice() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[0b1010, 0b1100])?;
+        let mut buf = crate::Buffer::from_slice([0b1010, 0b1100])?;
         let rhs = [0b1100, 0b1010];
         buf &= &rhs[..];
         assert_eq!(&*buf, &[0b1000, 0b1000]);
@@ -83,7 +83,7 @@ mod tests {
 
     #[test]
     fn test_bitand_assign_u8() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[0b1010, 0b1100])?;
+        let mut buf = crate::Buffer::from_slice([0b1010, 0b1100])?;
         buf &= 0b1100u8;
         assert_eq!(&*buf, &[0b1000, 0b1100]);
         Ok(())
@@ -91,7 +91,7 @@ mod tests {
 
     #[test]
     fn test_bitand_assign_ref_u8() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[0b1010, 0b1100])?;
+        let mut buf = crate::Buffer::from_slice([0b1010, 0b1100])?;
         buf &= &0b1100u8;
         assert_eq!(&*buf, &[0b1000, 0b1100]);
         Ok(())
@@ -99,7 +99,7 @@ mod tests {
 
     #[test]
     fn test_bitor_assign_slice() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[0b1010, 0b1100])?;
+        let mut buf = crate::Buffer::from_slice([0b1010, 0b1100])?;
         let rhs = [0b1100, 0b1010];
         buf |= &rhs[..];
         assert_eq!(&*buf, &[0b1110, 0b1110]);
@@ -108,7 +108,7 @@ mod tests {
 
     #[test]
     fn test_bitor_assign_u8() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[0b1010, 0b1100])?;
+        let mut buf = crate::Buffer::from_slice([0b1010, 0b1100])?;
         buf |= 0b1010u8;
         assert_eq!(&*buf, &[0b1010, 0b1110]);
         Ok(())
@@ -116,7 +116,7 @@ mod tests {
 
     #[test]
     fn test_bitor_assign_ref_u8() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[0b1010, 0b1100])?;
+        let mut buf = crate::Buffer::from_slice([0b1010, 0b1100])?;
         buf |= &0b1010u8;
         assert_eq!(&*buf, &[0b1010, 0b1110]);
         Ok(())
@@ -124,7 +124,7 @@ mod tests {
 
     #[test]
     fn test_bitxor_assign_slice() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[0b1010, 0b1100])?;
+        let mut buf = crate::Buffer::from_slice([0b1010, 0b1100])?;
         let rhs = [0b1100, 0b1010];
         buf ^= &rhs[..];
         assert_eq!(&*buf, &[0b0110, 0b0110]);
@@ -133,7 +133,7 @@ mod tests {
 
     #[test]
     fn test_bitxor_assign_u8() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[0b1010, 0b1100])?;
+        let mut buf = crate::Buffer::from_slice([0b1010, 0b1100])?;
         buf ^= 0b1111u8;
         assert_eq!(&*buf, &[0b0101, 0b0011]);
         Ok(())
@@ -141,7 +141,7 @@ mod tests {
 
     #[test]
     fn test_bitxor_assign_ref_u8() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[0b1010, 0b1100])?;
+        let mut buf = crate::Buffer::from_slice([0b1010, 0b1100])?;
         buf ^= &0b1111u8;
         assert_eq!(&*buf, &[0b0101, 0b0011]);
         Ok(())
@@ -149,7 +149,7 @@ mod tests {
 
     #[test]
     fn test_shl_assign_u8() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[1, 2, 3])?;
+        let mut buf = crate::Buffer::from_slice([1, 2, 3])?;
         buf <<= 2u8;
         assert_eq!(&*buf, &[4, 8, 12]);
         Ok(())
@@ -157,7 +157,7 @@ mod tests {
 
     #[test]
     fn test_shr_assign_u8() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[4, 8, 12])?;
+        let mut buf = crate::Buffer::from_slice([4, 8, 12])?;
         buf >>= 2u8;
         assert_eq!(&*buf, &[1, 2, 3]);
         Ok(())
@@ -165,7 +165,7 @@ mod tests {
 
     #[test]
     fn test_different_lengths_slice() -> Result<(), crate::BufferError> {
-        let mut buf = crate::Buffer::from_slice(&[0b1010, 0b1100, 0b1111])?;
+        let mut buf = crate::Buffer::from_slice([0b1010, 0b1100, 0b1111])?;
         let rhs = [0b1100, 0b1010];
         buf &= &rhs[..];
         assert_eq!(&*buf, &[0b1000, 0b1000, 0b1111]);
