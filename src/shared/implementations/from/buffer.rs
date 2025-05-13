@@ -1,3 +1,5 @@
+#![allow(clippy::unnecessary_struct_initialization)]
+
 use std::sync::Arc;
 
 use crate::{Buffer, SharedBuffer};

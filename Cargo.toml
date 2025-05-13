@@ -1,17 +1,17 @@
 [package]
 name = "ps-buffer"
-description = "aligned heap buffer"
 version = "0.1.0-18"
 edition = "2021"
+description = "aligned heap buffer"
 license = "GPL-3.0-or-later"
+
+[dependencies]
+ps-alloc = "0.1.0-6"
+ps-range = "0.1.0-2"
+thiserror = "2.0.12"
 
 [profile.dev]
 opt-level = 3
 
 [profile.release]
 opt-level = 3
-
-[dependencies]
-ps-alloc = "0.1.0-6"
-ps-range = "0.1.0-2"
-thiserror = "2.0.12"
