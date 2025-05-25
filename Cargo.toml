@@ -1,6 +1,6 @@
 [package]
 name = "ps-buffer"
-version = "0.1.0-18"
+version = "0.1.0-19"
 edition = "2021"
 description = "aligned heap buffer"
 license = "GPL-3.0-or-later"
