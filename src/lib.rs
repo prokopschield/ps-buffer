@@ -2,7 +2,6 @@
 
 pub use constants::*;
 pub use error::BufferError;
-pub use result::BufferResult;
 pub use shared::SharedBuffer;
 pub use traits::*;
 
@@ -10,7 +9,6 @@ mod constants;
 mod error;
 mod implementations;
 mod methods;
-mod result;
 mod shared;
 mod traits;
 
