@@ -1,5 +1,12 @@
 mod as_ref;
 mod clone;
+mod debug;
+mod default;
 mod deref;
 mod drop;
+mod eq;
 mod from;
+mod hash;
+mod ord;
+mod partial_eq;
+mod partial_ord;
